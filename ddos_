@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# Plugin to monitor DDOS Attack
+#
+# Parameters understood:
+#
+# 	config   (required)
+# 	autoconf (optional)
+#
+# Made by Nicolas Hennion ( aka Nicolargo )
+#
+
+NETSTAT=${netstat:-`which netstat`}
+
+if [ "$1" = "autoconf" ]; then
+        if [ -a -n "${NETSTAT}" -a -x "${NETSTAT}" ] ; then
+		echo yes
+		exit 0
+	else
+		echo no
+		exit 1
+	fi
+fi
+
+if [ "$1" = "config" ]; then
+	echo 'graph_title DDOS counter'
+	echo 'graph_category security'
+	echo 'graph_vlabel SYN_RECV'
+	echo 'load.label ddos'
+    exit 0
+fi
+
+echo -n "ddos.value "
+$NETSTAT -ant | grep SYN_RECV | wc -l
