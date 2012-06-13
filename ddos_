@@ -24,9 +24,12 @@ fi
 
 if [ "$1" = "config" ]; then
 	echo 'graph_title DDOS counter'
+	echo 'graph_info A DDOS counter based on openned SYN_RECV sessions'
 	echo 'graph_category security'
 	echo 'graph_vlabel SYN_RECV'
 	echo 'ddos.label ddos'
+	echo 'ddos.warning 50'
+	echo 'ddos.critical 70'
     exit 0
 fi
 
