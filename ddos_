@@ -13,7 +13,7 @@
 NETSTAT=${netstat:-`which netstat`}
 
 if [ "$1" = "autoconf" ]; then
-        if [ -a -n "${NETSTAT}" -a -x "${NETSTAT}" ] ; then
+        if [ -n "${NETSTAT}" -a -x "${NETSTAT}" ] ; then
 		echo yes
 		exit 0
 	else
